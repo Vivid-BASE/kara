@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>からあげえあらいん | Karaage Airline Official</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <canvas id="snow-canvas"></canvas>
+
+    <!-- Top Area -->
+    <h1 class="cute-title">からあげえあらいん</h1>
+    <div class="hero-viewport">
+        <div class="airplane-wrap">
+            <!-- Ensure this image matches the user's provided filename, assuming top.png based on list_dir -->
+            <img src="top.png" alt="Karaage Airline B747" class="airplane-img">
+
+            <nav class="window-nav">
+                <a href="#news" class="window-btn">
+                    <i class="fas fa-bullhorn"></i>
+                    <span class="window-label">NEWS</span>
+                </a>
+                <a href="#profile" class="window-btn">
+                    <i class="fas fa-id-badge"></i>
+                    <span class="window-label">PROFILE</span>
+                </a>
+                <a href="#crew" class="window-btn">
+                    <i class="fas fa-users"></i>
+                    <span class="window-label">CREW</span>
+                </a>
+                <a href="#video" class="window-btn">
+                    <i class="fas fa-video"></i>
+                    <span class="window-label">VIDEO</span>
+                </a>
+                <a href="#contact" class="window-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span class="window-label">CONTACT</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- NEWS -->
+    <section id="news">
+        <h2>FLIGHT NEWS</h2>
+        <div class="news-container">
+            <ul class="news-list">
+                <li class="news-item" onclick="openModal(this)">
+                    <span class="news-date">2026.02.17</span>
+                    <span class="news-title">からあげえあらいん公式サイト、本日テイクオフ！</span>
+                    <div class="hidden-body" style="display:none;">
+                        <p>本日、公式サイトをオープンいたしました。</p>
+                        <p>これからはYouTubeだけでなく、こちらのサイトでも最新情報をお届けします。</p>
+                        <p>皆様のご搭乗を心よりお待ちしております。</p>
+                    </div>
+                </li>
+                <li class="news-item" onclick="openModal(this)">
+                    <span class="news-date">2026.02.10</span>
+                    <span class="news-title">【重要】冬季限定・雪エフェクトについて</span>
+                    <div class="hidden-body" style="display:none;">
+                        <p>現在、冬季限定でサイト上に雪が降る演出を行っております。</p>
+                        <p>季節によって変化する空の旅をお楽しみください。</p>
+                    </div>
+                </li>
+                <!-- Dummy Data for Scrolling Check -->
+                <li class="news-item" onclick="openModal(this)">
+                    <span class="news-date">2026.01.01</span>
+                    <span class="news-title">あけましておめでとうございます</span>
+                    <div class="hidden-body" style="display:none;">
+                        <p>新年あけましておめでとうございます。</p>
+                        <p>本年もからあげえあらいんをよろしくお願いいたします。</p>
+                    </div>
+                </li>
+                <li class="news-item" onclick="openModal(this)">
+                    <span class="news-date">2025.12.25</span>
+                    <span class="news-title">メリークリスマス！</span>
+                    <div class="hidden-body" style="display:none;">
+                        <p>素敵なクリスマスをお過ごしください。</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profile">
+        <h2>PROFILE</h2>
+        <div class="profile-content">
+            <div class="unit-logo-box">
+                <img src="KAXLOGO.png" alt="Karaage Airline Logo" class="unit-logo-img">
+            </div>
+            <p style="font-size:1.5rem; font-weight:bold; margin-bottom:20px;">からあげえあらいん</p>
+            <p>mikemike × きたむらみのり</p>
+            <p>日常をフライトに変える、自由気ままな二人組ユニット。</p>
+        </div>
+    </section>
+
+    <!-- CREW -->
+    <section id="crew">
+        <h2>CREW</h2>
+        <div class="crew-grid">
+            <div class="crew-card" onclick="openCrewModal(this)">
+                <img src="mikemike.png" alt="mikemike" class="crew-img">
+                <div class="crew-name">mikemike</div>
+                <div class="crew-role">Lyricist / Pilot</div>
+                <div class="crew-links">
+                    <a href="https://x.com/mikemiketter" target="_blank" class="sns-link"
+                        onclick="event.stopPropagation()"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" target="_blank" class="sns-link" onclick="event.stopPropagation()"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+                <div class="hidden-crew-details" style="display:none;">
+                    <p>Karaage Airlineの機長。作詞担当。</p>
+                    <p>自由人であり、予測不能な行動で周囲を驚かせるが、そのクリエイティビティは本物。</p>
+                    <p>誕生日：2月1日</p>
+                    <p>好きな食べ物：からあげ</p>
+                </div>
+            </div>
+            <div class="crew-card" onclick="openCrewModal(this)">
+                <img src="minori.png" alt="Minori Kitamura" class="crew-img">
+                <div class="crew-name">きたむらみのり</div>
+                <div class="crew-role">Bassist / Pilot</div>
+                <div class="crew-links">
+                    <a href="https://x.com/aru_ba_mk" target="_blank" class="sns-link"
+                        onclick="event.stopPropagation()"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/ktmrmnr_bass/" target="_blank" class="sns-link"
+                        onclick="event.stopPropagation()"><i class="fab fa-instagram"></i></a>
+                    <a href="https://kedama-bass.bitfan.id/" target="_blank" class="sns-link"
+                        onclick="event.stopPropagation()" title="Official Site"><i class="fas fa-globe"></i></a>
+                </div>
+                <div class="hidden-crew-details" style="display:none;">
+                    <p>Karaage Airlineの機長。ベーシスト。</p>
+                    <p>機長の暴走を止めつつ、しっかりとした低音でユニットを支える。</p>
+                    <p>誕生日：12月20日</p>
+                    <p>趣味：旅行、写真</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section id="video">
+        <h2>FLIGHT SHEDULE (VIDEO)</h2>
+        <div class="flight-board-frame">
+            <div class="flight-board-container">
+                <table class="flight-board">
+                    <thead>
+                        <tr>
+                            <th style="width:12%">DATE</th>
+                            <th>DESTINATION (VIDEO TITLE)</th>
+                            <th style="width:12%; padding-right: 20px;">FLIGHT NO.</th>
+                            <th style="width:20%">REMARKS</th>
+                            <th style="width:10%">STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Latest Flight -->
+                        <tr>
+                            <td>2025.12.15</td>
+                            <td><a href="https://www.youtube.com/watch?v=Qlnx5B_t-i8" target="_blank">今年の疲れ今年の内に！</a>
+                            </td>
+                            <td>KXA-034</td>
+                            <td>Radio</td>
+                            <td class="status-cell boarding-anim" style="color:#76ff03; font-weight:bold;">BOARDING</td>
+                        </tr>
+                        <!-- 2025 -->
+                        <tr>
+                            <td>2025.11.10</td>
+                            <td><a href="https://www.youtube.com/watch?v=TB2waGh4Zig" target="_blank">リアルイベント＆近況報告</a>
+                            </td>
+                            <td>KXA-033</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2025.08.20</td>
+                            <td><a href="https://www.youtube.com/watch?v=6IR8JEbxiI8" target="_blank">まさか1年経ってまた夏！？</a>
+                            </td>
+                            <td>KXA-032</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2025.02.14</td>
+                            <td><a href="https://www.youtube.com/watch?v=Mpp9lbS8NSA" target="_blank">あなたの恋バナおしえて！</a>
+                            </td>
+                            <td>KXA-031</td>
+                            <td>Valen.</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <!-- 2024 -->
+                        <tr>
+                            <td>2024.11.20</td>
+                            <td><a href="https://www.youtube.com/watch?v=4r1LX87ybqo" target="_blank">あなたの推し活について！</a>
+                            </td>
+                            <td>KXA-030</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2024.04.01</td>
+                            <td><a href="https://www.youtube.com/watch?v=1uwemXPNLYc" target="_blank">2024年の抱負と総決算</a>
+                            </td>
+                            <td>KXA-029</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <!-- 2023 -->
+                        <tr>
+                            <td>2023.12.25</td>
+                            <td><a href="https://www.youtube.com/watch?v=VnOZKwheeUU" target="_blank">冬のテーマ3本立て！</a>
+                            </td>
+                            <td>KXA-028</td>
+                            <td>Xmas</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2023.10.31</td>
+                            <td><a href="https://www.youtube.com/watch?v=4S6koxcnxD8" target="_blank">本当にあった怖い話！大会</a>
+                            </td>
+                            <td>KXA-027</td>
+                            <td>Halloween</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2023.06.15</td>
+                            <td><a href="https://www.youtube.com/watch?v=bYmFmUudkuY" target="_blank">梅雨を吹っ飛ばせ！</a></td>
+                            <td>KXA-026</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2023.05.05</td>
+                            <td><a href="https://www.youtube.com/watch?v=veT_-HxkwVU" target="_blank">わたしの川柳・第1回</a>
+                            </td>
+                            <td>KXA-025</td>
+                            <td>Event</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2023.02.03</td>
+                            <td><a href="https://www.youtube.com/watch?v=Wxz6n1xQeig" target="_blank">リアルな鬼エピソード</a>
+                            </td>
+                            <td>KXA-024</td>
+                            <td>Setsubun</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2023.01.10</td>
+                            <td><a href="https://www.youtube.com/watch?v=lQEdSDi2_rw" target="_blank">新春！占いエピソード！</a>
+                            </td>
+                            <td>KXA-023</td>
+                            <td>Guest: 水月陵</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <!-- 2022 -->
+                        <tr>
+                            <td>2022.11.20</td>
+                            <td><a href="https://www.youtube.com/watch?v=q5GMMeloNh0" target="_blank">冬じたく</a></td>
+                            <td>KXA-022</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2022.10.30</td>
+                            <td><a href="https://www.youtube.com/watch?v=eDmXwuBcJPs" target="_blank">テーマは「ハロウィン！」</a>
+                            </td>
+                            <td>KXA-021</td>
+                            <td>Halloween</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2022.08.15</td>
+                            <td><a href="https://www.youtube.com/watch?v=bUxOi15gB1M" target="_blank">身の毛もよだつゾッとする話</a>
+                            </td>
+                            <td>KXA-020</td>
+                            <td>Horror</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2022.07.20</td>
+                            <td><a href="https://www.youtube.com/watch?v=yPuAnCaRseU" target="_blank">オレ流・夏の楽しみ方！</a>
+                            </td>
+                            <td>KXA-019</td>
+                            <td>Summer</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2022.06.10</td>
+                            <td><a href="https://www.youtube.com/watch?v=liJ-ynQdULo" target="_blank">じめじめしたお話教えて</a>
+                            </td>
+                            <td>KXA-018</td>
+                            <td>Rainy</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2022.05.15</td>
+                            <td><a href="https://www.youtube.com/watch?v=ZdrGzSK6f94" target="_blank">まわりの変わった人・面白い人</a>
+                            </td>
+                            <td>KXA-017</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2022.04.10</td>
+                            <td><a href="https://www.youtube.com/watch?v=5-LzV9x-tl8" target="_blank">占い・オカルトなお話</a>
+                            </td>
+                            <td>KXA-016</td>
+                            <td>Occult</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2022.02.20</td>
+                            <td><a href="https://www.youtube.com/watch?v=Ui9mDls6L-c" target="_blank">初ゲスト水月陵さん！</a>
+                            </td>
+                            <td>KXA-015</td>
+                            <td>Guest: 水月陵</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <!-- 2021 -->
+                        <tr>
+                            <td>2021.12.25</td>
+                            <td><a href="https://www.youtube.com/watch?v=afTjgmhrcT0"
+                                    target="_blank">みのりんレベルアップ記念生配信！</a></td>
+                            <td>KXA-LIVE</td>
+                            <td>Live</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2021.12.10</td>
+                            <td><a href="https://www.youtube.com/watch?v=7HAiYbCm5Mk" target="_blank">おすすめの鍋料理！</a></td>
+                            <td>KXA-014</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2021.11.15</td>
+                            <td><a href="https://www.youtube.com/watch?v=4xB11boDLXw" target="_blank">夢のセカンドライフ</a></td>
+                            <td>KXA-013</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2021.08.20</td>
+                            <td><a href="https://www.youtube.com/watch?v=UhPysX2GPFE" target="_blank">夏の恐怖体験話！</a></td>
+                            <td>KXA-012</td>
+                            <td>Horror</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2021.07.15</td>
+                            <td><a href="https://www.youtube.com/watch?v=MNMs8KJbnk4" target="_blank">テーマは夢！</a></td>
+                            <td>KXA-011</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2021.06.10</td>
+                            <td><a href="https://www.youtube.com/watch?v=FtIlv3FMUVI"
+                                    target="_blank">新コーナー「からっと揚げ飛ばし」</a></td>
+                            <td>KXA-010</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2021.05.20</td>
+                            <td><a href="https://www.youtube.com/watch?v=_8NvM2UAb4M" target="_blank">テーマは旅！</a></td>
+                            <td>KXA-009</td>
+                            <td>Travel</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2021.03.15</td>
+                            <td><a href="https://www.youtube.com/watch?v=O7bO0zNdvvw" target="_blank">テーマは卒業！</a></td>
+                            <td>KXA-008</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2021.02.10</td>
+                            <td><a href="https://www.youtube.com/watch?v=nDbqrJ9LJhY" target="_blank">最近買って良かったもの</a>
+                            </td>
+                            <td>KXA-007</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2021.01.05</td>
+                            <td><a href="https://www.youtube.com/watch?v=VIBKMgbmNZ8" target="_blank">新春一発目放送！</a></td>
+                            <td>KXA-006</td>
+                            <td>NewYear</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <!-- 2020 -->
+                        <tr>
+                            <td>2020.12.25</td>
+                            <td><a href="https://www.youtube.com/watch?v=Dwa28dzMGT4" target="_blank">Xmas振り返りSP</a>
+                            </td>
+                            <td>KXA-005</td>
+                            <td>Xmas</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2020.11.20</td>
+                            <td><a href="https://www.youtube.com/watch?v=3vdj39S7SFM" target="_blank">かみかみ神様</a></td>
+                            <td>KXA-004</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2020.10.15</td>
+                            <td><a href="https://www.youtube.com/watch?v=ma4Lf4SuYko" target="_blank">質問にお答えします</a></td>
+                            <td>KXA-003</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2020.09.25</td>
+                            <td><a href="https://www.youtube.com/watch?v=zcdplRT0htk" target="_blank">お互いに質問してみよう</a>
+                            </td>
+                            <td>KXA-002</td>
+                            <td>Radio</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                        <tr>
+                            <td>2020.09.01</td>
+                            <td><a href="https://www.youtube.com/watch?v=I8SLfBS_kck" target="_blank">初回放送！</a></td>
+                            <td>KXA-001</td>
+                            <td>First</td>
+                            <td class="status-cell"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p style="text-align:right; margin-top:20px;">
+            <a href="https://www.youtube.com/@%E3%81%8B%E3%82%89%E3%81%82%E3%81%92%E3%81%88%E3%81%82%E3%82%89%E3%81%84%E3%82%93/videos"
+                target="_blank" style="color:var(--accent-blue); font-weight:bold;">
+                View All Flights on YouTube <i class="fas fa-external-link-alt"></i>
+            </a>
+        </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2>CONTACT TOWER</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Subject (Required)" required>
+            <input type="text" placeholder="Pilot Name (Required)" required>
+            <input type="email" placeholder="Email Address (Required)" required>
+            <textarea rows="5" placeholder="Message (Required)" required></textarea>
+            <button type="submit" class="submit-btn">SEND MESSAGE</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Karaage Airline. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModalClick(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModalBtn()">&times;</span>
+            <div id="modal-date" style="color:var(--accent-blue); font-weight:bold; margin-bottom:10px;"></div>
+            <h3 id="modal-title"
+                style="margin-bottom:20px; border-bottom:1px solid #eee; padding-bottom:10px; font-size:1.5rem;"></h3>
+            <div id="modal-body" style="line-height:1.8;"></div>
+            <a href="#contact" class="modal-contact-link" onclick="closeModalBtn()">
+                <i class="fas fa-paper-plane"></i> Contact Us
+            </a>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

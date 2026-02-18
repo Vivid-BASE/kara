@@ -1,0 +1,795 @@
+/* =========================================
+   1. Real-time Environment & Base Settings
+   ========================================= */
+:root {
+    /* Dynamic Color Variables (Changed by JS) */
+    --sky-top: #4fc3f7;
+    /* Day Sky Top */
+    --sky-bottom: #e1f5fe;
+    /* Day Sky Bottom */
+    --accent-blue: #0288d1;
+    /* Accent Color */
+    --text-main: #333333;
+    /* Main Text Color */
+    --card-bg: rgba(255, 255, 255, 0.95);
+    /* Content Background */
+    --font-main: "Helvetica Neue", "Hiragino Kaku Gothic ProN", Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom));
+    background-attachment: fixed;
+    transition: background 2s ease;
+    font-family: var(--font-main);
+    color: var(--text-main);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    position: relative;
+    /* For floating elements */
+}
+
+/* Floating Elements Container */
+#floating-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    /* Below content but visible */
+    overflow: hidden;
+}
+
+.floating-item {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.6;
+    animation: floatUp 15s linear infinite;
+    user-select: none;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Snow Canvas */
+#snow-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Link Settings */
+a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+/* =========================================
+   2. Top Area (Airplane & Window Menu)
+   ========================================= */
+.hero-viewport {
+    width: 100%;
+    height: 90vh;
+    /* Increased height for better impact */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.airplane-wrap {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    /* Responsive width */
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.3));
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.airplane-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* Cute Title */
+.cute-title {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    color: #fff;
+    font-size: 6rem;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    /* Flashy Styles */
+    text-shadow:
+        3px 3px 0px #ff69b4,
+        -3px -3px 0px #00bfff,
+        3px -3px 0px #ffeb3b,
+        -3px 3px 0px #7cfc00,
+        0 0 20px rgba(255, 255, 255, 0.8);
+    letter-spacing: 5px;
+    transform: rotate(-2deg);
+    animation: bounceTitle 2s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes bounceTitle {
+
+    0%,
+    100% {
+        transform: rotate(-2deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(2deg) translateY(-10px);
+    }
+}
+
+/* --- 窓メニューの位置合わせ用CSS --- */
+.window-nav {
+    position: absolute;
+    /* ▼ ここから下の4つの数字をいじって位置を合わせます ▼ */
+    top: 51%;
+    /* 上からの位置 */
+    left: 35%;
+    /* 左からの位置 */
+    width: 35%;
+    /* 全体の幅 */
+    height: 6%;
+    /* 高さ */
+    /* ▲ ここまで ▲ */
+
+    display: flex;
+    justify-content: space-between;
+    /* 両端を揃えて均等配置 */
+    z-index: 10;
+
+    /* 【確認用】緑色の帯を表示（調整が終わったら消す） */
+    background: rgba(0, 255, 0, 0.3);
+}
+
+.window-btn {
+    position: relative;
+    /* 幅を調整（窓1つの幅に合わせる） */
+    width: 15%;
+    height: 100%;
+    /* 高さは親要素(.window-nav)に合わせる */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #1a237e;
+    font-size: 1.5rem;
+    /* アイコンサイズ少し小さく */
+    transition: all 0.3s;
+
+    /* 【確認用】赤い枠線を表示（調整が終わったら消す） */
+    border: 2px solid red;
+    background: rgba(0, 0, 0, 0.2);
+    /* 半透明の黒（今の状態） */
+    border-radius: 10px;
+    /* 角丸を窓の形に合わせる */
+}
+
+.window-btn i {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    transition: transform 0.4s;
+}
+
+/* Hover Effects */
+.window-label {
+    position: absolute;
+    bottom: -40px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 20px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    white-space: nowrap;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+.window-btn:hover {
+    transform: scale(1.3) translateY(-10px);
+    color: #fff;
+    z-index: 20;
+}
+
+.window-btn:hover .window-label {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   3. Content Sections
+   ========================================= */
+section {
+    padding: 100px 5%;
+    max-width: 1000px;
+    margin: 0 auto 80px;
+    background: var(--card-bg);
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+    /* Glassmorphism */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+h2 {
+    text-align: center;
+    color: var(--accent-blue);
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+    position: relative;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent-blue);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* --- NEWS Section --- */
+#news .news-container {
+    max-height: 400px;
+    /* Limit height */
+    overflow-y: auto;
+    /* Scrollable */
+    padding-right: 15px;
+    /* Space for scrollbar */
+}
+
+/* Custom Scrollbar for News */
+#news .news-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#news .news-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#news .news-container::-webkit-scrollbar-thumb {
+    background: #bcdcec;
+    border-radius: 4px;
+}
+
+#news .news-container::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-blue);
+}
+
+.news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.news-item {
+    padding: 25px 20px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.news-item:hover {
+    background: rgba(227, 242, 253, 0.5);
+    padding-left: 30px;
+    transform: translateX(5px);
+}
+
+.news-date {
+    background: var(--accent-blue);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(2, 136, 209, 0.3);
+}
+
+.news-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* --- PROFILE Section --- */
+.profile-content {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 2.4;
+}
+
+.unit-logo-box {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Image containment for logo */
+}
+
+.unit-logo-img {
+    max-width: 100%;
+    max-height: 100%;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+}
+
+/* --- CREW Section --- */
+.crew-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px;
+    justify-content: center;
+}
+
+.crew-card {
+    padding: 50px 30px;
+    background: #fff;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s, box-shadow 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.crew-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--accent-blue);
+}
+
+.crew-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.crew-img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #e1f5fe;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s;
+}
+
+.crew-card:hover .crew-img {
+    transform: scale(1.1) rotate(5deg);
+    border-color: var(--accent-blue);
+}
+
+.crew-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.crew-role {
+    color: var(--accent-blue);
+    font-weight: bold;
+    margin-bottom: 25px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.crew-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.sns-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: #f0f4f8;
+    border-radius: 50%;
+    color: #555;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sns-link i {
+    font-size: 1.5rem;
+}
+
+.sns-link:hover {
+    background: var(--accent-blue);
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* --- VIDEO (Flight Board) --- */
+.flight-board-frame {
+    background: #222;
+    padding: 25px;
+    border-radius: 15px;
+    border: 4px solid #444;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.9), 0 20px 50px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    /* Hide overflow */
+}
+
+.flight-board-container {
+    max-height: 500px;
+    overflow-y: auto;
+    /* Scrollable board */
+}
+
+.flight-board-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.flight-board-container::-webkit-scrollbar-track {
+    background: #333;
+}
+
+.flight-board-container::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 5px;
+}
+
+.flight-board {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-family: 'Courier New', Courier, monospace;
+    color: #ffb300;
+}
+
+.flight-board thead th {
+    position: sticky;
+    top: 0;
+    background: #222;
+    z-index: 5;
+    text-align: left;
+    padding: 15px;
+    color: #aaa;
+    border-bottom: 2px solid #555;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.flight-board td {
+    padding: 18px 15px;
+    border-bottom: 1px solid #333;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    /* Prevent wrapping */
+}
+
+.flight-board tr:hover td {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.flight-board a {
+    color: #ffb300;
+    text-decoration: none;
+    display: block;
+    transition: 0.2s;
+}
+
+.flight-board a:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #ffeb3b;
+}
+
+.status-cell {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-boarding {
+    color: #76ff03;
+    animation: blink 1.5s infinite;
+}
+
+.status-delayed {
+    color: #ff3d00;
+}
+
+.status-departed {
+    color: #aaa;
+}
+
+.status-cancelled {
+    color: #ff1744;
+    text-decoration: line-through;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* --- CONTACT --- */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 20px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    background: #f9f9f9;
+    transition: 0.3s;
+    font-family: inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--accent-blue);
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(2, 136, 209, 0.1);
+}
+
+.submit-btn {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 20px 60px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(2, 136, 209, 0.3);
+}
+
+.submit-btn:hover {
+    background: #01579b;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(2, 136, 209, 0.4);
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(to right, #01579b, #0288d1);
+    color: #fff;
+    margin-top: 150px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* --- MODAL --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: modalFadeIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.modal-content {
+    background: #fff;
+    width: 90%;
+    max-width: 700px;
+    padding: 60px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    animation: modalSlideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalSlideUp {
+    from {
+        transform: translateY(50px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 40px;
+    cursor: pointer;
+    color: #ccc;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: #333;
+    transform: rotate(90deg);
+}
+
+.modal-contact-link {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    margin-top: 40px;
+    background: var(--accent-blue);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.modal-contact-link:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .hero-viewport {
+        height: 60vh;
+    }
+
+    .airplane-wrap {
+        width: 100%;
+    }
+
+    /* .window-nav handles percentage scaling automatically */
+
+    .window-btn {
+        font-size: 1.5rem;
+    }
+
+    .window-label {
+        display: none;
+    }
+
+    /* Hide labels on mobile to avoid clutter */
+
+    section {
+        padding: 60px 20px;
+        border-radius: 20px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .news-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .news-date {
+        margin-bottom: 10px;
+    }
+
+    .crew-grid {
+        gap: 30px;
+    }
+
+    .flight-board {
+        min-width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .flight-board th,
+    .flight-board td {
+        padding: 10px 5px;
+    }
+
+    /* Horizontal scroll for table on mobile */
+    .flight-board-container {
+        overflow-x: auto;
+    }
+
+    .cute-title {
+        font-size: 3rem;
+        /* Adjusted for mobile */
+        top: 10px;
+    }
+}
