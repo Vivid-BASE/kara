@@ -190,9 +190,6 @@ a:hover {
     justify-content: space-between;
     /* 両端を揃えて均等配置 */
     z-index: 10;
-
-    /* 【確認用】緑色の帯を表示（調整が終わったら消す） */
-    background: rgba(0, 255, 0, 0.3);
 }
 
 .window-btn {
@@ -207,17 +204,19 @@ a:hover {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: #1a237e;
+    color: #fff;
     font-size: 1.5rem;
-    /* アイコンサイズ少し小さく */
-    transition: all 0.3s;
 
-    /* 【確認用】赤い枠線を表示（調整が終わったら消す） */
-    border: 2px solid red;
-    background: rgba(0, 0, 0, 0.2);
-    /* 半透明の黒（今の状態） */
-    border-radius: 10px;
-    /* 角丸を窓の形に合わせる */
+    /* Window Shape Styling */
+    background: rgba(10, 20, 50, 0.75);
+    /* Dark Blue window glass */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25%;
+    /* Rounded window shape */
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(1px);
+
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .window-btn i {
