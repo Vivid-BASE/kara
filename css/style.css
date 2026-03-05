@@ -185,7 +185,7 @@ a:hover {
 /* --- 窓メニューの位置合わせ用CSS --- */
 .window-nav {
     position: absolute;
-    bottom: 0px;
+    bottom: 75px;
     /* Shifted higher up into the airplane bottom */
     left: 2%;
     width: 96%;
