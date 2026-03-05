@@ -185,11 +185,12 @@ a:hover {
 /* --- 窓メニューの位置合わせ用CSS --- */
 .window-nav {
     position: absolute;
-    bottom: 5px;
+    bottom: 0px;
     /* Shifted higher up into the airplane bottom */
-    left: 10%;
-    width: 80%;
-    height: 110px;
+    left: 2%;
+    width: 96%;
+    height: 170px;
+    /* Much taller -> Much wider because of 2/3 aspect ratio */
     display: flex;
     justify-content: space-evenly;
     /* Better spacing between dynamic widths */
@@ -230,8 +231,8 @@ a:hover {
 
 /* Window Text styling for direct display */
 .window-text {
-    font-size: 1rem;
-    /* Slightly smaller for two lines */
+    font-size: 1.4rem;
+    /* Scaled up for the larger windows */
     line-height: 1.2;
     font-weight: bold;
     color: #2c3e50;
