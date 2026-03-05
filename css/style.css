@@ -185,21 +185,24 @@ a:hover {
 /* --- 窓メニューの位置合わせ用CSS --- */
 .window-nav {
     position: absolute;
-    bottom: -15px;
+    bottom: 5px;
+    /* Shifted higher up into the airplane bottom */
     left: 10%;
     width: 80%;
-    height: 120px;
+    height: 110px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    /* Better spacing between dynamic widths */
+    align-items: center;
     z-index: 50;
     /* Ensure high priority visibility */
 }
 
 .window-btn {
     position: relative;
-    width: 16%;
-    /* 5 items -> ~16% width each, nicely fits */
     height: 100%;
+    aspect-ratio: 2 / 3;
+    /* Fixed mathematical vertical shape */
 
     display: flex;
     flex-direction: column;
@@ -212,8 +215,8 @@ a:hover {
     /* Window Shape Styling (Vertical Rounded Rectangle) */
     background: #e1f5fe;
     border: 5px solid #bdc3c7;
-    border-radius: 60px / 120px;
-    /* Force vertical pill/window shape */
+    border-radius: 40px;
+    /* Creates a perfect rounded vertical pill */
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(1px);
 
@@ -227,11 +230,13 @@ a:hover {
 
 /* Window Text styling for direct display */
 .window-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    /* Slightly smaller for two lines */
+    line-height: 1.2;
     font-weight: bold;
     color: #2c3e50;
-    white-space: nowrap;
-    /* Prevent strange line breaks */
+    white-space: normal;
+    /* Allow <br> to break correctly */
     text-align: center;
 }
 
@@ -778,9 +783,9 @@ footer {
 
     /* .window-nav handles percentage scaling automatically */
     .window-nav {
-        height: 70px;
+        height: 85px;
         /* Taller on mobile too */
-        bottom: 5px;
+        bottom: 10px;
         /* Bumped up */
         left: 2%;
         width: 96%;
@@ -788,12 +793,12 @@ footer {
 
     .window-btn {
         border-width: 3px;
-        border-radius: 30px / 60px;
+        border-radius: 25px;
         /* Maintain vertical shape on mobile */
     }
 
     .window-text {
-        font-size: 0.70rem;
+        font-size: 0.65rem;
         /* Readjusted for 5 items */
     }
 
