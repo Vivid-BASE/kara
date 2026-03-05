@@ -23,24 +23,19 @@
 
             <nav class="window-nav">
                 <a href="#news" class="window-btn">
-                    <i class="fas fa-bullhorn"></i>
-                    <span class="window-label">NEWS</span>
+                    <span class="window-text">NEWS</span>
                 </a>
                 <a href="#profile" class="window-btn">
-                    <i class="fas fa-id-badge"></i>
-                    <span class="window-label">PROFILE</span>
+                    <span class="window-text">PROFILE</span>
                 </a>
                 <a href="#crew" class="window-btn">
-                    <i class="fas fa-users"></i>
-                    <span class="window-label">CREW</span>
+                    <span class="window-text">CREW</span>
                 </a>
                 <a href="#video" class="window-btn">
-                    <i class="fas fa-video"></i>
-                    <span class="window-label">VIDEO</span>
+                    <span class="window-text">PODCAST</span>
                 </a>
                 <a href="#contact" class="window-btn">
-                    <i class="fas fa-paper-plane"></i>
-                    <span class="window-label">CONTACT</span>
+                    <span class="window-text">CONTACT</span>
                 </a>
             </nav>
         </div>
@@ -106,23 +101,6 @@
         <h2>CREW</h2>
         <div class="crew-grid">
             <div class="crew-card" onclick="openCrewModal(this)">
-                <img src="mikemike.png" alt="mikemike" class="crew-img">
-                <div class="crew-name">mikemike</div>
-                <div class="crew-role">Lyricist / Pilot</div>
-                <div class="crew-links">
-                    <a href="https://x.com/mikemiketter" target="_blank" class="sns-link"
-                        onclick="event.stopPropagation()"><i class="fab fa-x-twitter"></i></a>
-                    <a href="#" target="_blank" class="sns-link" onclick="event.stopPropagation()"><i
-                            class="fab fa-instagram"></i></a>
-                </div>
-                <div class="hidden-crew-details" style="display:none;">
-                    <p>Karaage Airlineの機長。作詞担当。</p>
-                    <p>自由人であり、予測不能な行動で周囲を驚かせるが、そのクリエイティビティは本物。</p>
-                    <p>誕生日：2月1日</p>
-                    <p>好きな食べ物：からあげ</p>
-                </div>
-            </div>
-            <div class="crew-card" onclick="openCrewModal(this)">
                 <img src="minori.png" alt="Minori Kitamura" class="crew-img">
                 <div class="crew-name">きたむらみのり</div>
                 <div class="crew-role">Bassist / Pilot</div>
@@ -141,19 +119,36 @@
                     <p>趣味：旅行、写真</p>
                 </div>
             </div>
+            <div class="crew-card" onclick="openCrewModal(this)">
+                <img src="mikemike.png" alt="mikemike" class="crew-img">
+                <div class="crew-name">mikemike</div>
+                <div class="crew-role">Lyricist / Pilot</div>
+                <div class="crew-links">
+                    <a href="https://x.com/mikemiketter" target="_blank" class="sns-link"
+                        onclick="event.stopPropagation()"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" target="_blank" class="sns-link" onclick="event.stopPropagation()"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+                <div class="hidden-crew-details" style="display:none;">
+                    <p>Karaage Airlineの機長。作詞担当。</p>
+                    <p>自由人であり、予測不能な行動で周囲を驚かせるが、そのクリエイティビティは本物。</p>
+                    <p>誕生日：2月1日</p>
+                    <p>好きな食べ物：からあげ</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- VIDEO -->
+    <!-- VIDEO/PODCAST -->
     <section id="video">
-        <h2>FLIGHT SHEDULE (VIDEO)</h2>
+        <h2>FLIGHT SHEDULE (PODCAST)</h2>
         <div class="flight-board-frame">
             <div class="flight-board-container">
                 <table class="flight-board">
                     <thead>
                         <tr>
                             <th style="width:12%">DATE</th>
-                            <th>DESTINATION (VIDEO TITLE)</th>
+                            <th>DESTINATION (PODCAST TITLE)</th>
                             <th style="width:12%; padding-right: 20px;">FLIGHT NO.</th>
                             <th style="width:20%">REMARKS</th>
                             <th style="width:10%">STATUS</th>
@@ -442,7 +437,7 @@
         <p style="text-align:right; margin-top:20px;">
             <a href="https://www.youtube.com/@%E3%81%8B%E3%82%89%E3%81%82%E3%81%92%E3%81%88%E3%81%82%E3%82%89%E3%81%84%E3%82%93/videos"
                 target="_blank" style="color:var(--accent-blue); font-weight:bold;">
-                View All Flights on YouTube <i class="fas fa-external-link-alt"></i>
+                View All Flights on YouTube / Podcast <i class="fas fa-external-link-alt"></i>
             </a>
         </p>
     </section>
@@ -460,7 +455,12 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Karaage Airline. All rights reserved.</p>
+        <div class="footer-copyright">
+            <span class="copyright-text">&copy; 2026 Karaage Airline. All Rights Reserved.</span>
+            <span class="separator"> | </span>
+            <span class="produced-by">Produced by <a href="https://showtimeboxx.com/creative/" class="stealth-link"
+                    target="_blank" rel="noopener noreferrer">SHOWTIMEBOXX CRIATIVE</a></span>
+        </div>
     </footer>
 
     <!-- Modal -->

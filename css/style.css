@@ -175,20 +175,12 @@ a:hover {
 /* --- 窓メニューの位置合わせ用CSS --- */
 .window-nav {
     position: absolute;
-    /* ▼ ここから下の4つの数字をいじって位置を合わせます ▼ */
-    top: 51%;
-    /* 上からの位置 */
-    left: 35%;
-    /* 左からの位置 */
-    width: 35%;
-    /* 全体の幅 */
-    height: 6%;
-    /* 高さ */
-    /* ▲ ここまで ▲ */
-
+    bottom: -30px;
+    left: 5%;
+    width: 90%;
+    height: 60px;
     display: flex;
     justify-content: space-between;
-    /* 両端を揃えて均等配置 */
     z-index: 10;
 }
 
@@ -224,33 +216,18 @@ a:hover {
     transition: transform 0.4s;
 }
 
-/* Hover Effects */
-.window-label {
-    position: absolute;
-    bottom: -40px;
-    font-size: 1rem;
+/* Window Text styling for direct display */
+.window-text {
+    font-size: 1.2rem;
     font-weight: bold;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 5px 10px;
-    border-radius: 20px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s;
-    white-space: nowrap;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    pointer-events: none;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+    word-break: break-all;
 }
 
 .window-btn:hover {
-    transform: scale(1.3) translateY(-10px);
+    transform: scale(1.1) translateY(-10px);
     color: #fff;
     z-index: 20;
-}
-
-.window-btn:hover .window-label {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 /* =========================================
@@ -642,6 +619,25 @@ footer {
     letter-spacing: 1px;
 }
 
+/* Footer Copyright Snippet */
+.footer-copyright {
+    margin-top: 20px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.stealth-link {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.stealth-link:hover {
+    text-decoration: none;
+    opacity: 0.8;
+}
+
 /* --- MODAL --- */
 .modal-overlay {
     display: none;
@@ -737,17 +733,16 @@ footer {
         width: 100%;
     }
 
-    /* .window-nav handles percentage scaling automatically */
-
-    .window-btn {
-        font-size: 1.5rem;
+    .window-nav {
+        height: 45px;
+        bottom: -20px;
+        left: 2%;
+        width: 96%;
     }
 
-    .window-label {
-        display: none;
+    .window-text {
+        font-size: 0.75rem;
     }
-
-    /* Hide labels on mobile to avoid clutter */
 
     section {
         padding: 60px 20px;
@@ -781,9 +776,81 @@ footer {
         padding: 10px 5px;
     }
 
-    /* Horizontal scroll for table on mobile */
+    /* Card layout for table on mobile */
     .flight-board-container {
-        overflow-x: auto;
+        overflow-x: hidden;
+    }
+
+    .flight-board {
+        min-width: 100%;
+        display: block;
+    }
+
+    .flight-board thead {
+        display: none;
+    }
+
+    .flight-board tbody,
+    .flight-board tr {
+        display: block;
+    }
+
+    .flight-board tr {
+        margin-bottom: 20px;
+        border: 1px solid #444;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .flight-board td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #333;
+        padding: 12px 10px;
+        white-space: normal;
+        text-align: right;
+    }
+
+    .flight-board td:last-child {
+        border-bottom: none;
+    }
+
+    .flight-board td::before {
+        font-weight: bold;
+        color: #aaa;
+        margin-right: 15px;
+        white-space: nowrap;
+    }
+
+    .flight-board td:nth-child(1)::before {
+        content: "DATE";
+    }
+
+    .flight-board td:nth-child(2)::before {
+        content: "TITLE";
+    }
+
+    .flight-board td:nth-child(3)::before {
+        content: "FLIGHT NO.";
+    }
+
+    .flight-board td:nth-child(4)::before {
+        content: "REMARKS";
+    }
+
+    .flight-board td:nth-child(5)::before {
+        content: "STATUS";
+    }
+
+    /* Footer responsive */
+    .footer-copyright .separator {
+        display: none;
+    }
+
+    .footer-copyright .produced-by {
+        display: block;
+        margin-top: 5px;
     }
 
     .cute-title {

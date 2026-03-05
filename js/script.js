@@ -8,87 +8,150 @@ document.addEventListener('DOMContentLoaded', () => {
 /* =========================================
    1. Environment Control (Time & Season)
    ========================================= */
+/* =========================================
+   1. Environment Control (Time & Season)
+   ========================================= */
 function initEnvironment() {
     const now = new Date();
     const hours = now.getHours();
-    const month = now.getMonth() + 1; // 0-11 -> 1-12
     const root = document.documentElement;
 
     // --- Time of Day Logic ---
     let timeClass = '';
-
     if (hours >= 5 && hours < 10) {
-        // Morning
         timeClass = 'morning';
         root.style.setProperty('--sky-top', '#a1c4fd');
         root.style.setProperty('--sky-bottom', '#c2e9fb');
     } else if (hours >= 10 && hours < 16) {
-        // Noon (Day)
         timeClass = 'day';
         root.style.setProperty('--sky-top', '#4fc3f7');
         root.style.setProperty('--sky-bottom', '#e1f5fe');
     } else if (hours >= 16 && hours < 19) {
-        // Evening (Sunset)
         timeClass = 'evening';
         root.style.setProperty('--sky-top', '#ff7e5f');
         root.style.setProperty('--sky-bottom', '#feb47b');
     } else {
-        // Night
         timeClass = 'night';
         root.style.setProperty('--sky-top', '#0f2027');
         root.style.setProperty('--sky-bottom', '#203a43');
-        document.body.style.color = '#e0e0e0'; // Light text for night
-        root.style.setProperty('--card-bg', 'rgba(30, 30, 40, 0.95)'); // Dark card for night
+        document.body.style.color = '#e0e0e0';
+        root.style.setProperty('--card-bg', 'rgba(30, 30, 40, 0.95)');
         root.style.setProperty('--text-main', '#e0e0e0');
     }
-
     document.body.classList.add(timeClass);
     console.log(`Current Time Mode: ${timeClass}`);
 
-    // --- Season / Special Event Logic ---
-    // Setsubun (Feb 3)
-    if (month === 2 && now.getDate() === 3) {
-        // Setsubun - Maybe Oni colors or Beans? Let's use Red/Yellow
-        root.style.setProperty('--accent-blue', '#ffb300'); // Yellow/Orange
-        createFloatingElements('👹'); // Oni mask or Beans if available, usually text emoji works
-    }
-    // Mikemike Birthday (Feb 1)
-    else if (month === 2 && now.getDate() === 1) {
-        root.style.setProperty('--accent-blue', '#ff9800'); // Orange for Mike?
-        createFloatingElements('🎂'); // Cake
-    }
-    // Valentine's Day
-    else if (month === 2 && now.getDate() === 14) {
-        root.style.setProperty('--accent-blue', '#e91e63'); // Pink
-        createFloatingElements('❤️');
-    }
-    // Minori Birthday (Dec 20)
-    else if (month === 12 && now.getDate() === 20) {
-        root.style.setProperty('--accent-blue', '#9c27b0'); // Purple for Minori?
-        createFloatingElements('🎉');
-    }
-    // Christmas
-    else if (month === 12 && now.getDate() >= 24 && now.getDate() <= 25) {
-        root.style.setProperty('--accent-blue', '#d32f2f'); // Red
-        createFloatingElements('🎄');
-    }
-    // Spring (Sakura)
-    else if (month >= 3 && month <= 4) {
-        createFloatingElements('🌸');
-    }
+    // --- Special Event Logic (Fixed Dates & Holidays) ---
+    checkSpecialEvents(now, root);
 
-    // Force Snow in Winter (Dec, Jan, Feb)
-    if (month === 12 || month === 1 || month === 2) {
-        // Snow canvas is handled in initSnow, this check just confirms season
+    // --- Real-time Weather Logic (Open-Meteo for Haneda) ---
+    fetchWeatherForHaneda();
+}
+
+function checkSpecialEvents(date, root) {
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    // Helper to calculate "Nth Monday" etc if needed, but for now fixed dates are prioritized
+
+    // --- Specific Dates Loopup ---
+    const events = {
+        // January
+        "1/1": { icon: "🎍", color: "#d32f2f" }, // New Year
+        "1/2": { icon: "🎍", color: "#d32f2f" },
+        "1/3": { icon: "🎍", color: "#d32f2f" },
+        // February
+        "2/1": { icon: "🎂", color: "#ff9800" }, // Mikemike Birthday
+        "2/3": { icon: "👹", color: "#ffb300" }, // Setsubun
+        "2/11": { icon: "🇯🇵", color: "#ef5350" }, // Foundation Day
+        "2/14": { icon: "❤️", color: "#e91e63" }, // Valentine
+        // March
+        "3/3": { icon: "🎎", color: "#f48fb1" }, // Hinamatsuri
+        "3/14": { icon: "💙", color: "#2196f3" }, // White Day
+        // April
+        "4/29": { icon: "🌿", color: "#66bb6a" }, // Showa Day
+        // May
+        "5/3": { icon: "📜", color: "#ffd54f" }, // Constitution Memorial
+        "5/4": { icon: "🍃", color: "#81c784" }, // Greenery Day
+        "5/5": { icon: "🎏", color: "#42a5f5" }, // Children's Day
+        // July
+        "7/7": { icon: "🎋", color: "#80deea" }, // Tanabata
+        "7/15": { icon: "🌊", color: "#0277bd" }, // Marine Day (Fixed approx)
+        // August
+        "8/11": { icon: "⛰️", color: "#4caf50" }, // Mountain Day
+        // September
+        // "9/xx": Respect for Aged/Equinox (Variable) 
+        // October
+        "10/31": { icon: "🎃", color: "#ff9800" }, // Halloween
+        // November
+        "11/3": { icon: "🎨", color: "#ffa726" }, // Culture Day
+        "11/23": { icon: "🌾", color: "#8d6e63" }, // Labor Thanksgiving
+        // December
+        "12/20": { icon: "🎉", color: "#9c27b0" }, // Minori Birthday
+        "12/24": { icon: "🎄", color: "#d32f2f" }, // Xmas Eve
+        "12/25": { icon: "🎄", color: "#d32f2f" }, // Xmas
+    };
+
+    const monthlyEmojis = {
+        1: '❄️',
+        2: '⛄',
+        3: '🌸',
+        4: '🍡',
+        5: '🌿',
+        6: '☔',
+        7: '🌻',
+        8: '🍉',
+        9: '🎑',
+        10: '🍠',
+        11: '🍂',
+        12: '❄️'
+    };
+
+    const key = `${month}/${day}`;
+    if (events[key]) {
+        if (events[key].color) root.style.setProperty('--accent-blue', events[key].color);
+        createFloatingElements(events[key].icon);
+        console.log(`Event Active: ${key} -> ${events[key].icon}`);
+    } else {
+        createFloatingElements(monthlyEmojis[month] || '🌸');
     }
+}
+
+function fetchWeatherForHaneda() {
+    // Haneda Airport: 35.549, 139.779
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=35.549&longitude=139.779&current=temperature_2m,weather_code&timezone=Asia%2FTokyo";
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (!data.current) return;
+
+            const code = data.current.weather_code;
+            const temp = data.current.temperature_2m;
+            console.log(`Haneda Weather: Code ${code}, Temp ${temp}°C`);
+
+            // Snow Logic:
+            // WMO Codes: 71, 73, 75, 77 (Snow fall), 85, 86 (Snow showers)
+            // OR Temp <= 3.0 degrees
+            const isSnowing = [71, 73, 75, 77, 85, 86].includes(code);
+            const isCold = temp <= 3.0;
+
+            if (isSnowing || isCold) {
+                console.log("Snow condition met! Starting snow animation.");
+                // Ensure snow canvas is initialized
+                initSnow();
+                // We could also force a grey sky here if desired, but user said "only snow"
+            }
+        })
+        .catch(err => console.error("Weather fetch failed:", err));
 }
 
 /* =========================================
    2. Effects (Snow / Floating Icons)
    ========================================= */
 function initSnow() {
-    const month = new Date().getMonth() + 1;
-    if (!(month === 12 || month === 1 || month === 2)) return;
+    // Removed hardcoded month check to allow Weather API to trigger snow
+    // const month = new Date().getMonth() + 1;
+    // if (!(month === 12 || month === 1 || month === 2)) return;
 
     const c = document.getElementById('snow-canvas');
     if (!c) return;
