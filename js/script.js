@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     initEnvironment();
-    initSnow();
     initFlightBoard();
     initBackToTop();
 });

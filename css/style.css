@@ -113,6 +113,7 @@ a:hover {
     justify-content: center;
     position: relative;
     overflow: visible;
+    z-index: 50;
     /* Changed from hidden so the window nav shows up */
 }
 
@@ -232,7 +233,9 @@ a:hover {
     font-size: 1.2rem;
     font-weight: bold;
     color: #2c3e50;
-    word-break: break-all;
+    white-space: nowrap;
+    /* Prevent strange line breaks */
+    text-align: center;
 }
 
 .window-btn:hover {
