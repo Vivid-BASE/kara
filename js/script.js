@@ -139,7 +139,11 @@ function fetchWeatherForHaneda() {
                 console.log("Snow condition met! Starting snow animation.");
                 // Ensure snow canvas is initialized
                 initSnow();
-                // We could also force a grey sky here if desired, but user said "only snow"
+                // Disable floating emojis to prevent collision with snow
+                const floatingContainer = document.getElementById('floating-container');
+                if (floatingContainer) {
+                    floatingContainer.style.display = 'none';
+                }
             }
         })
         .catch(err => console.error("Weather fetch failed:", err));

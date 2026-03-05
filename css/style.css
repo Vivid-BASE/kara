@@ -51,7 +51,7 @@ html {
 
 @keyframes floatUp {
     0% {
-        transform: translateY(110vh) rotate(0deg);
+        transform: translateY(0) rotate(0deg);
         opacity: 0;
     }
 
@@ -64,7 +64,7 @@ html {
     }
 
     100% {
-        transform: translateY(-10vh) rotate(360deg);
+        transform: translateY(-120vh) rotate(360deg);
         opacity: 0;
     }
 }
@@ -72,13 +72,10 @@ html {
 .floating-item {
     position: absolute;
     font-size: 2rem;
+    top: 110vh;
+    /* Start below the screen natively to hide during delay */
     opacity: 0;
-    /* Initially hide before animation starts */
-    bottom: -50px;
-    /* Ensure it's hidden at bottom initially */
     animation: floatUp 15s linear infinite;
-    animation-fill-mode: both;
-    /* Prevent appearing at top before animating */
     user-select: none;
 }
 
@@ -115,7 +112,8 @@ a:hover {
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    /* Changed from hidden so the window nav shows up */
 }
 
 .airplane-wrap {
@@ -186,13 +184,15 @@ a:hover {
 /* --- 窓メニューの位置合わせ用CSS --- */
 .window-nav {
     position: absolute;
-    bottom: -30px;
-    left: 5%;
-    width: 90%;
-    height: 60px;
+    bottom: -60px;
+    /* Shifted further down so it hangs clearly under the plane */
+    left: 2%;
+    width: 96%;
+    height: 80px;
     display: flex;
     justify-content: space-between;
-    z-index: 10;
+    z-index: 50;
+    /* Ensure high priority visibility */
 }
 
 .window-btn {
@@ -913,8 +913,10 @@ footer {
     }
 
     .cute-title {
-        font-size: 3rem;
-        /* Adjusted for mobile */
+        font-size: 2rem;
+        /* Adjusted to fit perfectly on one line */
+        white-space: nowrap;
+        /* Force single line */
         top: 10px;
     }
 }
