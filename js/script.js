@@ -1,8 +1,8 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     initEnvironment();
     initSnow();
     initFlightBoard();
+    initBackToTop();
 });
 
 /* =========================================
@@ -279,5 +279,28 @@ function initFlightBoard() {
         cell.className = 'status-cell';
         cell.innerText = randomStatus.text;
         cell.classList.add(randomStatus.class);
+    });
+}
+
+/* =========================================
+   5. Back to Top Button
+   ========================================= */
+function initBackToTop() {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+    });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 }

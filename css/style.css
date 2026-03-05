@@ -26,8 +26,14 @@ body {
     color: var(--text-main);
     scroll-behavior: smooth;
     overflow-x: hidden;
+    max-width: 100vw;
     position: relative;
     /* For floating elements */
+}
+
+html {
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 /* Floating Elements Container */
@@ -41,14 +47,6 @@ body {
     z-index: 1;
     /* Below content but visible */
     overflow: hidden;
-}
-
-.floating-item {
-    position: absolute;
-    font-size: 2rem;
-    opacity: 0.6;
-    animation: floatUp 15s linear infinite;
-    user-select: none;
 }
 
 @keyframes floatUp {
@@ -69,6 +67,19 @@ body {
         transform: translateY(-10vh) rotate(360deg);
         opacity: 0;
     }
+}
+
+.floating-item {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0;
+    /* Initially hide before animation starts */
+    bottom: -50px;
+    /* Ensure it's hidden at bottom initially */
+    animation: floatUp 15s linear infinite;
+    animation-fill-mode: both;
+    /* Prevent appearing at top before animating */
+    user-select: none;
 }
 
 /* Snow Canvas */
@@ -187,7 +198,7 @@ a:hover {
 .window-btn {
     position: relative;
     /* 幅を調整（窓1つの幅に合わせる） */
-    width: 15%;
+    width: 14%;
     height: 100%;
     /* 高さは親要素(.window-nav)に合わせる */
 
@@ -196,16 +207,16 @@ a:hover {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: #fff;
+    color: #333;
     font-size: 1.5rem;
 
     /* Window Shape Styling */
-    background: rgba(10, 20, 50, 0.75);
-    /* Dark Blue window glass */
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 25%;
-    /* Rounded window shape */
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
+    background: #e1f5fe;
+    /* Light Blue window glass */
+    border: 5px solid #bdc3c7;
+    border-radius: 40px;
+    /* Rounded pill/window shape */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(1px);
 
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -220,13 +231,14 @@ a:hover {
 .window-text {
     font-size: 1.2rem;
     font-weight: bold;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+    color: #2c3e50;
     word-break: break-all;
 }
 
 .window-btn:hover {
     transform: scale(1.1) translateY(-10px);
-    color: #fff;
+    background: #b3e5fc;
+    color: #000;
     z-index: 20;
 }
 
@@ -619,6 +631,41 @@ footer {
     letter-spacing: 1px;
 }
 
+/* --- BACK TO TOP BUTTON --- */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#back-to-top.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#back-to-top:hover {
+    background: #01579b;
+    transform: translateY(-5px);
+}
+
 /* Footer Copyright Snippet */
 .footer-copyright {
     margin-top: 20px;
@@ -729,19 +776,23 @@ footer {
         height: 60vh;
     }
 
-    .airplane-wrap {
-        width: 100%;
-    }
-
+    /* .window-nav handles percentage scaling automatically */
     .window-nav {
         height: 45px;
-        bottom: -20px;
+        bottom: 15px;
+        /* Moved up to stop it hiding below */
         left: 2%;
         width: 96%;
     }
 
+    .window-btn {
+        border-width: 3px;
+        border-radius: 20px;
+    }
+
     .window-text {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
+        /* Smaller for 6 items */
     }
 
     section {
@@ -851,6 +902,14 @@ footer {
     .footer-copyright .produced-by {
         display: block;
         margin-top: 5px;
+    }
+
+    #back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
     }
 
     .cute-title {
